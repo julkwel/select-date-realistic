@@ -50,6 +50,8 @@
 
 
 
+
+
 /*
     * Avoir le nombre de jour réel, si on change la valeur du mois. Exemple: pas de 30 Février,
     * Les mois qui ont 30 jours auront 30 jours
@@ -61,38 +63,31 @@
     
     var selectYearIndex = $('#selectYear option:selected').attr("value");
     
-    if (selectMonthIndex == 2)
+        switch (selectMonthIndex)
         {
-            if((selectYearIndex%4==0) && ((selectYearIndex%100!=0) || (selectYearIndex%400==0))) 
-            {
-                //29 jours
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=29; i++)
-                {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
-                }
-            } else {
-                //28 jours
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=28; i++)
-                {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
-                }
-            }
-        } else if (selectMonthIndex == 1 || selectMonthIndex == 3 || selectMonthIndex == 5 || selectMonthIndex == 7 || selectMonthIndex == 8 || selectMonthIndex == 10 || selectMonthIndex == 12) {
-                //31 jours
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=31; i++)
-                {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
-                }
-        } else if (selectMonthIndex == 4 || selectMonthIndex == 6 || selectMonthIndex == 9 || selectMonthIndex == 11) {
-                //30 jours
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=30; i++)
-                {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
-                }
+            case '2':
+                    if((selectYearIndex%4==0) && ((selectYearIndex%100!=0) || (selectYearIndex%400==0))) 
+                    {
+                        //29 jours
+                        numberDay = 29;
+                        realOption(numberDay);
+                        
+                    } else {
+                        //28 jours
+                        numberDay = 28;
+                        realOption(numberDay);
+                    }
+                break;
+            case '1': case '3': case '5': case '7': case '8': case '10': case '12':
+                        //31 jours
+                    numberDay = 31;
+                    realOption(numberDay);
+                break;
+            case '4': case '6': case '9': case '11':
+                        //30 jours
+                    numberDay = 30;
+                    realOption(numberDay);
+                break;
         }
 });
 /*
@@ -106,37 +101,40 @@ $('#selectYear').change(function () {
     
     var selectYearIndex = $('#selectYear option:selected').attr("value");
     
-    if (selectMonthIndex == 2)
-        {
-            if((selectYearIndex%4==0) && ((selectYearIndex%100!=0) || (selectYearIndex%400==0))) 
-            {
-                //29 jours fevrier
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=29; i++)
+    switch (selectMonthIndex)
+    {
+        case '2':
+                if((selectYearIndex%4==0) && ((selectYearIndex%100!=0) || (selectYearIndex%400==0))) 
                 {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
+                    //29 jours
+                    numberDay = 29;
+                    realOption(numberDay);
+                    
+                } else {
+                    //28 jours
+                    numberDay = 28;
+                    realOption(numberDay);
                 }
-            } else {
-                //28 jours fevrier
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=28; i++)
-                {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
-                }
-            }
-        } else if (selectMonthIndex == 1 || selectMonthIndex == 3 || selectMonthIndex == 5 || selectMonthIndex == 7 || selectMonthIndex == 8 || selectMonthIndex == 10 || selectMonthIndex == 12) {
-                //31 jours pour janvier mars mai, etc
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=31; i++)
-                {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
-                }
-        } else if (selectMonthIndex == 4 || selectMonthIndex == 6 || selectMonthIndex == 9 || selectMonthIndex == 11) {
-                //30 jours pour avril juin septembre
-                $('#selectDay').children('option:not(:first)').remove();
-                for(var i=1; i<=30; i++)
-                {
-                    $('#selectDay').append('<option value='+i+'>'+i+'</option>');
-                }
-        }
+            break;
+        case '1': case '3': case '5': case '7': case '8': case '10': case '12':
+                    //31 jours
+                numberDay = 31;
+                realOption(numberDay);
+            break;
+        case '4': case '6': case '9': case '11':
+                    //30 jours
+                numberDay = 30;
+                realOption(numberDay);
+            break;
+    }
 });
+
+
+function realOption(numberDay)
+        {
+            $('#selectDay').children('option:not(:first)').remove();
+                        for(var i=1; i<=numberDay; i++)
+                        {
+                            $('#selectDay').append('<option value='+i+'>'+i+'</option>');
+                        }
+        }
