@@ -25,7 +25,7 @@ NY TECHNO NAMPIASAINA:
 Ny FOMBA FAMPIASA AZY:
   
   - Manao select 3 : Mois , Jour , Année  ao amin'ny fichier html misy ny formulaire anao
-  - Samy manana ny id tsirairay avy: #idMonth , #idDay , #idYear (Afaka ovaina raha tiana ka mila mifanaraka amin'izany ny ao amin'ny script realistic-date.js)
+  - Samy manana ny id tsirairay avy: #selectMonth , #selectDay , #selectYear (Afaka ovaina raha tiana ka mila mifanaraka amin'izany ny ao amin'ny script realistic-date.js)
   - Mila miantso ny script an'ny jQuery aloha dia atao eo ambaniny ny script realistic-date.js
   
 TSARA HO FANTATRA:
